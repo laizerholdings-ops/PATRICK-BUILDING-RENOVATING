@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrick Building and Renovating | Professional Construction & Renovation in Elukwatini</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            light: '#F3E5AB',
+                            dark: '#AA8C2C',
+                        },
+                        charcoal: {
+                            DEFAULT: '#1E1E1E',
+                            dark: '#121212',
+                            light: '#2D2D2D',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #AA8C2C 100%);
+        }
+        .gold-border {
+            border-color: #D4AF37;
+        }
+        .hero-overlay {
+            background: linear-gradient(rgba(18, 18, 18, 0.75), rgba(18, 18, 18, 0.88));
+        }
+        /* Enlarged Official Logo Watermark Background with full aspect ratio clarity */
+        .logo-watermark {
+            background-image: url('logo.jpeg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 700px auto;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        @media (max-width: 768px) {
+            .logo-watermark {
+                background-size: 360px auto;
+            }
+        }
+        @keyframes cinematicZoom {
+            0% { transform: scale(1) translate(0, 0); }
+            50% { transform: scale(1.08) translate(-1%, -1%); }
+            100% { transform: scale(1) translate(0, 0); }
+        }
+        .animate-cinematic-zoom {
+            animation: cinematicZoom 16s ease-in-out infinite;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        /* Light Theme Overrides */
+        body.light-theme {
+            background-color: #f8fafc !important;
+            color: #1e293b !important;
+        }
+        body.light-theme nav, 
+        body.light-theme footer, 
+        body.light-theme .bg-charcoal,
+        body.light-theme .bg-charcoal-dark {
+            background-color: #ffffff !important;
+            color: #1e293b !important;
+            border-color: #e2e8f0 !important;
+        }
+        body.light-theme .bg-charcoal-light {
+            background-color: #f1f5f9 !important;
+        }
+        body.light-theme .text-white {
+            color: #0f172a !important;
+        }
+        body.light-theme .text-gray-300, 
+        body.light-theme .text-gray-400 {
+            color: #475569 !important;
+        }
+        body.light-theme input, 
+        body.light-theme select, 
+        body.light-theme textarea {
+            background-color: #f8fafc !important;
+            color: #0f172a !important;
+            border-color: #cbd5e1 !important;
+        }
+    </style>
+</head>
+<body class="bg-charcoal-dark text-white antialiased selection:bg-gold selection:text-charcoal-dark transition-colors duration-500 relative" id="body-root">
+
+    <!-- Global Enlarged Logo Watermark Background Layer -->
+    <div class="fixed inset-0 z-0 logo-watermark"></div>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="sticky top-0 z-50 bg-charcoal/95 backdrop-blur-md border-b border-gold/20 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo & Brand Name -->
+                <a href="#home" class="flex items-center gap-3 group">
+                    <div class="w-14 h-10 rounded-lg gold-gradient p-0.5 flex items-center justify-center shadow-lg group-hover:scale-105 transition overflow-hidden">
+                        <img src="logo.jpeg" alt="Patrick Logo" class="w-full h-full object-contain bg-charcoal-dark rounded-[7px]" onerror="this.onerror=null; this.src='https://placehold.co/120x80/1E1E1E/D4AF37?text=PBR';">
+                    </div>
+                    <div>
+                        <span class="block font-bold text-lg sm:text-xl tracking-wide text-white group-hover:text-gold transition">PATRICK</span>
+                        <span class="block text-xs font-semibold tracking-widest text-gold">BUILDING & RENOVATING</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <div class="hidden lg:flex items-center space-x-8 font-medium">
+                    <a href="#home" class="text-gray-300 hover:text-gold transition">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-gold transition">About Us</a>
+                    <a href="#services" class="text-gray-300 hover:text-gold transition">Services</a>
+                    <a href="#projects" class="text-gray-300 hover:text-gold transition">Our Projects</a>
+                    <a href="#quote" class="text-gray-300 hover:text-gold transition">Get a Quote</a>
+                    <a href="#contact" class="text-gray-300 hover:text-gold transition">Contact</a>
+                </div>
+
+                <!-- CTA Quote Button & Theme Toggle (Desktop) -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <button id="theme-toggle" onclick="toggleTheme()" class="w-10 h-10 rounded-full bg-charcoal-light border border-gold/30 flex items-center justify-center text-gold hover:scale-110 transition shadow-lg cursor-pointer" title="Toggle Light/Dark Theme">
+                        <i id="theme-icon" class="fas fa-moon text-lg"></i>
+                    </button>
+                    <a href="#quote" class="gold-gradient text-charcoal-dark font-bold px-5 py-2.5 rounded-lg shadow-lg hover:opacity-90 transition transform hover:-translate-y-0.5">
+                        <i class="fas fa-file-invoice-dollar mr-2"></i> GET A QUOTE
+                    </a>
+                </div>
+
+                <!-- Mobile Menu & Theme Button -->
+                <div class="lg:hidden flex items-center space-x-3">
+                    <button onclick="toggleTheme()" class="w-10 h-10 rounded-full bg-charcoal-light border border-gold/30 flex items-center justify-center text-gold shadow-lg cursor-pointer" title="Toggle Light/Dark Theme">
+                        <i id="theme-icon-mobile" class="fas fa-moon text-lg"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-gold focus:outline-none text-2xl p-2 cursor-pointer">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-charcoal-light border-b border-gold/20 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" class="block text-gray-300 hover:text-gold py-2 font-medium">Home</a>
+            <a href="#about" class="block text-gray-300 hover:text-gold py-2 font-medium">About Us</a>
+            <a href="#services" class="block text-gray-300 hover:text-gold py-2 font-medium">Services</a>
+            <a href="#projects" class="block text-gray-300 hover:text-gold py-2 font-medium">Our Projects</a>
+            <a href="#quote" class="block text-gray-300 hover:text-gold py-2 font-medium">Get a Quote</a>
+            <a href="#contact" class="block text-gray-300 hover:text-gold py-2 font-medium">Contact</a>
+            <div class="pt-2">
+                <a href="#quote" class="block text-center gold-gradient text-charcoal-dark font-bold py-3 rounded-lg shadow">
+                    GET A FREE QUOTE
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Cinematic Motion Background Slider -->
+    <section id="home" class="relative min-h-[90vh] flex items-center justify-center bg-charcoal-dark overflow-hidden">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div id="hero-slider" class="absolute inset-0 w-full h-full">
+                <!-- Slide 1: Ilya Pexels Building -->
+                <div class="absolute inset-0 transition-opacity duration-1000 opacity-100 slide">
+                    <img src="https://images.pexels.com/photos/5335019/pexels-photo-5335019.jpeg" alt="Construction Workers" class="w-full h-full object-cover animate-cinematic-zoom">
+                </div>
+                <!-- Slide 2: Karolina K Modern Houses -->
+                <div class="absolute inset-0 transition-opacity duration-1000 opacity-0 slide">
+                    <img src="https://images.pexels.com/photos/30580640/pexels-photo-30580640.jpeg" alt="Modern Twin Houses" class="w-full h-full object-cover animate-cinematic-zoom">
+                </div>
+                <!-- Slide 3: Vladimir Srajber Tiling -->
+                <div class="absolute inset-0 transition-opacity duration-1000 opacity-0 slide">
+                    <img src="https://images.pexels.com/photos/11806477/pexels-photo-11806477.jpeg" alt="Professional Tiling" class="w-full h-full object-cover animate-cinematic-zoom">
+                </div>
+            </div>
+            <!-- Dark Transparent Overlay -->
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <!-- Hero Content with Professionally Proportioned Official Logo Showcase -->
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center py-20 animate-fade-in-up flex flex-col items-center">
+            <!-- Large Official Logo Display in correct aspect ratio -->
+            <div class="w-72 sm:w-96 h-auto max-h-56 rounded-2xl gold-gradient p-1.5 shadow-2xl mb-8 flex items-center justify-center transform hover:scale-105 transition duration-500 overflow-hidden bg-charcoal-dark">
+                <img src="logo.jpeg" alt="Patrick Building and Renovating Official Logo" class="w-full h-auto object-contain rounded-[12px]" onerror="this.onerror=null; this.src='https://placehold.co/400x250/1E1E1E/D4AF37?text=Logo';">
+            </div>
+
+            <span class="inline-block bg-gold/10 text-gold border border-gold/30 px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold uppercase tracking-widest mb-6 animate-pulse">
+                BUILD TODAY, BETTER TOMORROW
+            </span>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-tight mb-4 drop-shadow-lg">
+                PATRICK BUILDING <br class="hidden sm:inline"><span class="text-gold">AND RENOVATING</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-gold font-medium italic mb-6">
+                "Building Your Vision. Creating Your Future."
+            </p>
+            <p class="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Your trusted partner for professional building, renovation and property improvement services. We are committed to quality workmanship, reliable service and delivering results that stand the test of time.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#quote" class="w-full sm:w-auto gold-gradient text-charcoal-dark font-bold px-8 py-4 rounded-xl shadow-xl hover:scale-105 transition text-center text-lg">
+                    <i class="fas fa-file-contract mr-2"></i> GET A FREE QUOTE
+                </a>
+                <a href="https://wa.me/27714295538?text=Good%20day%20Patrick%20Building%20and%20Renovating.%20I%20visited%20your%20website%20and%20would%20like%20to%20enquire%20about%20your%20construction%20and%20renovation%20services.%20Please%20assist%20me%20with%20a%20quotation." target="_blank" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-xl shadow-xl transition text-center text-lg flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-2xl"></i> CONTACT US
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-charcoal relative transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="inline-block bg-gold/10 text-gold px-3 py-1 rounded text-sm font-semibold tracking-wider uppercase">
+                        ESTABLISHED EXCELLENCE
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                        About Patrick Building and Renovating
+                    </h2>
+                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
+                        Patrick Building and Renovating is a construction and renovation business dedicated to helping clients improve, build and transform their properties.
+                    </p>
+                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
+                        We provide building and property improvement services with a commitment to quality, attention to detail and customer satisfaction. Whether you are planning a new building project, renovating an existing property or upgrading your home, we aim to deliver professional workmanship and dependable service.
+                    </p>
+                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed">
+                        Our goal is to turn your construction ideas into reality while building lasting relationships with our clients. Build Today, Better Tomorrow.
+                    </p>
+                    <div class="pt-4 flex items-center gap-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center text-charcoal-dark font-bold text-xl shadow-lg">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Quality Guaranteed</h4>
+                                <p class="text-xs text-gray-400">Professional Standards</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center text-charcoal-dark font-bold text-xl shadow-lg">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">Trusted Partner</h4>
+                                <p class="text-xs text-gray-400">Elukwatini, Mpumalanga</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <div class="absolute -inset-2 gold-gradient rounded-2xl opacity-30 blur-lg group-hover:opacity-50 transition duration-500"></div>
+                    <div class="relative overflow-hidden rounded-2xl shadow-2xl border border-gold/30">
+                        <img src="https://images.pexels.com/photos/5335019/pexels-photo-5335019.jpeg" alt="Construction Builders at work" class="w-full h-[450px] object-cover transform group-hover:scale-105 transition duration-700">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-charcoal-dark relative transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-gold font-semibold tracking-widest uppercase text-sm bg-gold/10 px-3 py-1 rounded-full border border-gold/20">WHAT WE OFFER</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-3 mb-4">Our Professional Services</h2>
+                <p class="text-gray-300 text-base sm:text-lg">Comprehensive building, renovation and property improvement solutions tailored to your needs in Mpumalanga.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1: Building Construction -->
+                <div class="bg-charcoal rounded-2xl overflow-hidden border border-gold/20 shadow-xl hover:border-gold/60 transition duration-300 flex flex-col group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/5335019/pexels-photo-5335019.jpeg" alt="Building Construction Services" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-charcoal/90 border border-gold/40 rounded-xl flex items-center justify-center text-gold shadow-lg">
+                            <i class="fas fa-building text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold transition">BUILDING CONSTRUCTION</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-6">Professional building services for residential and other construction projects. From foundations to structural development, we help bring your building plans to life.</p>
+                        </div>
+                        <a href="https://wa.me/27714295538?text=Hello%20Patrick%20Building%20and%20Renovating,%20I%20am%20interested%20in%20your%20Building%20Construction%20services.%20Please%20assist%20with%20more%20details." target="_blank" class="w-full bg-charcoal-light hover:bg-gold hover:text-charcoal-dark border border-gold/40 text-gold font-bold py-3 rounded-xl transition text-center flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-lg"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 2: Tiling -->
+                <div class="bg-charcoal rounded-2xl overflow-hidden border border-gold/20 shadow-xl hover:border-gold/60 transition duration-300 flex flex-col group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/11806477/pexels-photo-11806477.jpeg" alt="Professional Tiling Services" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-charcoal/90 border border-gold/40 rounded-xl flex items-center justify-center text-gold shadow-lg">
+                            <i class="fas fa-th text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold transition">TILING</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-6">Professional floor and wall tiling services designed to improve the appearance and functionality of your property. Quality finishes and attention to detail.</p>
+                        </div>
+                        <a href="https://wa.me/27714295538?text=Hello%20Patrick%20Building%20and%20Renovating,%20I%20am%20interested%20in%20your%20Tiling%20services.%20Please%20assist%20with%20more%20details." target="_blank" class="w-full bg-charcoal-light hover:bg-gold hover:text-charcoal-dark border border-gold/40 text-gold font-bold py-3 rounded-xl transition text-center flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-lg"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 3: Ceiling Installation -->
+                <div class="bg-charcoal rounded-2xl overflow-hidden border border-gold/20 shadow-xl hover:border-gold/60 transition duration-300 flex flex-col group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/3747103/pexels-photo-3747103.jpeg" alt="Ceiling Installation Services" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-charcoal/90 border border-gold/40 rounded-xl flex items-center justify-center text-gold shadow-lg">
+                            <i class="fas fa-home text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold transition">CEILING INSTALLATION</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-6">Ceiling installation and improvement services to give your property a neat, modern and attractive interior finish.</p>
+                        </div>
+                        <a href="https://wa.me/27714295538?text=Hello%20Patrick%20Building%20and%20Renovating,%20I%20am%20interested%20in%20your%20Ceiling%20Installation%20services.%20Please%20assist%20with%20more%20details." target="_blank" class="w-full bg-charcoal-light hover:bg-gold hover:text-charcoal-dark border border-gold/40 text-gold font-bold py-3 rounded-xl transition text-center flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-lg"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 4: Roofing -->
+                <div class="bg-charcoal rounded-2xl overflow-hidden border border-gold/20 shadow-xl hover:border-gold/60 transition duration-300 flex flex-col group">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/38524253/pexels-photo-38524253.jpeg" alt="Roofing Services" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-charcoal/90 border border-gold/40 rounded-xl flex items-center justify-center text-gold shadow-lg">
+                            <i class="fas fa-hammer text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold transition">ROOFING</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-6">Roofing installation, improvements and renovation services designed to help protect and enhance your property.</p>
+                        </div>
+                        <a href="https://wa.me/27714295538?text=Hello%20Patrick%20Building%20and%20Renovating,%20I%20am%20interested%20in%20your%20Roofing%20services.%20Please%20assist%20with%20more%20details." target="_blank" class="w-full bg-charcoal-light hover:bg-gold hover:text-charcoal-dark border border-gold/40 text-gold font-bold py-3 rounded-xl transition text-center flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-lg"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 5: Plumbing (Updated Pexels image by Sergei Starostin) -->
+                <div class="bg-charcoal rounded-2xl overflow-hidden border border-gold/20 shadow-xl hover:border-gold/60 transition duration-300 flex flex-col group md:col-span-2 lg:col-span-1">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/29274530/pexels-photo-29274530.jpeg" alt="Plumbing Services" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 right-4 w-12 h-12 bg-charcoal/90 border border-gold/40 rounded-xl flex items-center justify-center text-gold shadow-lg">
+                            <i class="fas fa-wrench text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold transition">PLUMBING</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-6">General plumbing installation, maintenance and improvement services for residential properties.</p>
+                        </div>
+                        <a href="https://wa.me/27714295538?text=Hello%20Patrick%20Building%20and%20Renovating,%20I%20am%20interested%20in%20your%20Plumbing%20services.%20Please%20assist%20with%20more%20details." target="_blank" class="w-full bg-charcoal-light hover:bg-gold hover:text-charcoal-dark border border-gold/40 text-gold font-bold py-3 rounded-xl transition text-center flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp text-lg"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+<!-- ...тном existing code ... -->
+                <!-- Gallery Item 5 -->
+                <div class="relative overflow-hidden rounded-2xl group cursor-pointer shadow-xl border border-gold/20 bg-charcoal h-72" onclick="openLightbox(this)">
+                    <img src="https://images.pexels.com/photos/5335019/pexels-photo-5335019.jpeg" alt="Building Construction" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <span class="text-xs font-bold text-gold uppercase tracking-wider">Building Contractors</span>
+                        <h4 class="text-lg font-bold text-white">Site Construction & Development</h4>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 6 (Updated with Sergei Starostin Plumbing Pexels image) -->
+                <div class="relative overflow-hidden rounded-2xl group cursor-pointer shadow-xl border border-gold/20 bg-charcoal h-72" onclick="openLightbox(this)">
+                    <img src="https://images.pexels.com/photos/29274530/pexels-photo-29274530.jpeg" alt="Plumbing Installations" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal-dark via-transparent to-transparent opacity-80 group-hover:opacity-90 transition"></div>
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <span class="text-xs font-bold text-gold uppercase tracking-wider">Plumbing</span>
+                        <h4 class="text-lg font-bold text-white">Urban Pipework & Plumbing Installations</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-50 hidden bg-black/90 items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-gold transition cursor-pointer">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl border border-gold/30">
+            <img id="lightbox-img" src="" alt="Enlarged Project Photo" class="w-full h-auto object-contain max-h-[85vh]">
+        </div>
+    </div>
+
+    <!-- Get a Free Quote Section -->
+    <section id="quote" class="py-20 bg-charcoal relative transition-colors duration-500">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-charcoal-dark p-8 sm:p-12 rounded-3xl border border-gold/30 shadow-2xl">
+                <div class="text-center mb-10">
+                    <span class="text-gold font-semibold tracking-widest uppercase text-sm bg-gold/10 px-3 py-1 rounded-full border border-gold/20">QUOTATION ENQUIRY</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 mb-2">Get Your Free Quote</h2>
+                    <p class="text-gray-300 text-sm sm:text-base">Fill out the form below and your request will be instantly prepared for direct WhatsApp communication to Patrick Building & Renovating.</p>
+                </div>
+
+                <form id="quote-form" onsubmit="handleQuoteSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Full Name *</label>
+                            <input type="text" id="quote-name" required class="w-full bg-charcoal border border-gold/30 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-gold transition" placeholder="e.g. John Sithole">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Contact Number *</label>
+                            <input type="tel" id="quote-phone" required class="w-full bg-charcoal border border-gold/30 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-gold transition" placeholder="e.g. 071 234 5678">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                            <input type="email" id="quote-email" class="w-full bg-charcoal border border-gold/30 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-gold transition" placeholder="e.g. john@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Service Required *</label>
+                            <select id="quote-service" required class="w-full bg-charcoal border border-gold/30 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-gold transition">
+                                <option value="" disabled selected>Select a service</option>
+                                <option value="Building Construction">Building Construction</option>
+                                <option value="Tiling">Tiling</option>
+                                <option value="Ceiling Installation">Ceiling Installation</option>
+                                <option value="Roofing">Roofing</option>
+                                <option value="Plumbing">Plumbing</option>
+                                <option value="Other Enquiries">Other Enquiries</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Project Location *</label>
+                        <input type="text" id="quote-location" required class="w-full bg-charcoal border border-gold/30 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-gold transition" placeholder="e.g. Elukwatini, Mpumalanga">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Project Description *</label>
+                        <textarea id="quote-desc" rows="4" required class="w-full bg-charcoal border border-gold/30 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-gold transition" placeholder="Describe your construction or renovation requirements..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full gold-gradient text-charcoal-dark font-extrabold py-4 rounded-xl shadow-xl hover:opacity-95 transition text-lg tracking-wide cursor-pointer flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-2xl"></i> REQUEST MY FREE QUOTE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="py-20 bg-charcoal-dark relative transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-gold font-semibold tracking-widest uppercase text-sm bg-gold/10 px-3 py-1 rounded-full border border-gold/20">REACH OUT</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-3 mb-4">Get In Touch With Us</h2>
+                <p class="text-gray-300 text-base sm:text-lg">We are ready to discuss your building and renovation plans. Contact us via phone, email, WhatsApp, or visit us in Elukwatini.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <!-- Contact Info & Details -->
+                <div class="space-y-8">
+                    <div class="bg-charcoal p-8 rounded-2xl border border-gold/20 shadow-xl space-y-6">
+                        <h3 class="text-2xl font-bold text-white border-b border-gold/20 pb-4">Patrick Building and Renovating</h3>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center text-charcoal-dark text-xl font-bold shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-lg">Location</h4>
+                                <p class="text-gray-300 text-sm">Elukwatini, 1192, South Africa</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center text-charcoal-dark text-xl font-bold shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-lg">Phone Number</h4>
+                                <a href="tel:0714295538" class="text-gold hover:underline text-sm font-semibold">071 429 5538</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center text-charcoal-dark text-xl font-bold shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-lg">Email Address</h4>
+                                <a href="mailto:patrickkhulekani92@gmail.com" class="text-gold hover:underline text-sm font-semibold">patrickkhulekani92@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 flex gap-4">
+                            <a href="https://wa.me/27714295538?text=Good%20day%20Patrick%20Building%20and%20Renovating.%20I%20visited%20your%20website%20and%20would%20like%20to%20enquire%20about%20your%20construction%20and%20renovation%20services." target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl transition text-center flex items-center justify-center gap-2">
+                                <i class="fab fa-whatsapp text-xl"></i> WhatsApp Us
+                            </a>
+                            <a href="tel:0714295538" class="flex-1 gold-gradient text-charcoal-dark font-bold py-3.5 rounded-xl transition text-center flex items-center justify-center gap-2">
+                                <i class="fas fa-phone text-lg"></i> Call Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Google Map Elukwatini -->
+                    <div class="rounded-2xl overflow-hidden border border-gold/20 shadow-xl h-64">
+                        <iframe title="Elukwatini Map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3598.2435775464!2d30.6865!3d-26.0456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ee869b1e7c5b367%3A0x6b1b6c7a051d9e20!2sElukwatini%2C%201192%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v1650000000000!5m2!1sen!2sza" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Contact Message Form -->
+                <div class="bg-charcoal p-8 sm:p-10 rounded-2xl border border-gold/20 shadow-xl">
+                    <h3 class="text-2xl font-bold text-white mb-6">Send Us a Direct Message</h3>
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Your Name *</label>
+                            <input type="text" id="contact-name" required class="w-full bg-charcoal-dark border border-gold/30 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-gold transition" placeholder="e.g. Nomusa Dlamini">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Your Phone Number *</label>
+                            <input type="tel" id="contact-phone" required class="w-full bg-charcoal-dark border border-gold/30 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-gold transition" placeholder="e.g. 071 429 5538">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Your Email *</label>
+                            <input type="email" id="contact-email" required class="w-full bg-charcoal-dark border border-gold/30 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-gold transition" placeholder="e.g. nomusa@example.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-2">Message *</label>
+                            <textarea id="contact-message" rows="5" required class="w-full bg-charcoal-dark border border-gold/30 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-gold transition" placeholder="How can we help you with your building or renovation project?"></textarea>
+                        </div>
+                        <button type="submit" class="w-full gold-gradient text-charcoal-dark font-extrabold py-4 rounded-xl shadow-xl hover:opacity-95 transition text-lg tracking-wide cursor-pointer flex items-center justify-center gap-2">
+                            <i class="fas fa-paper-plane mr-2"></i> SEND MESSAGE
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-white border-t border-gold/20 pt-16 pb-12 transition-colors duration-500 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Col 1: Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-16 h-12 rounded-lg gold-gradient p-0.5 flex items-center justify-center shadow overflow-hidden bg-charcoal-dark">
+                            <img src="logo.jpeg" alt="Patrick Logo" class="w-full h-full object-contain rounded-[6px]" onerror="this.onerror=null; this.src='https://placehold.co/120x80/1E1E1E/D4AF37?text=PBR';">
+                        </div>
+                        <span class="font-bold text-lg tracking-wide text-white">PATRICK</span>
+                    </div>
+                    <p class="text-gold text-sm font-semibold italic">Build Today, Better Tomorrow.</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">Your trusted partner for professional building, construction, roofing, tiling, ceiling and plumbing services in Mpumalanga.</p>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="text-gold font-bold text-lg mb-4 border-b border-gold/20 pb-2">Quick Navigation</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="text-gray-300 hover:text-gold transition">Home</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-gold transition">About Us</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-gold transition">Services</a></li>
+                        <li><a href="#projects" class="text-gray-300 hover:text-gold transition">Our Projects</a></li>
+                        <li><a href="#quote" class="text-gray-300 hover:text-gold transition">Get a Quote</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-gold transition">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Our Services -->
+                <div>
+                    <h4 class="text-gold font-bold text-lg mb-4 border-b border-gold/20 pb-2">Our Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#services" class="text-gray-300 hover:text-gold transition">Building Construction</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-gold transition">Professional Tiling</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-gold transition">Ceiling Installation</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-gold transition">Roofing Services</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-gold transition">Plumbing Services</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact Info -->
+                <div>
+                    <h4 class="text-gold font-bold text-lg mb-4 border-b border-gold/20 pb-2">Contact Details</h4>
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-2">
+                            <i class="fas fa-map-marker-alt text-gold mt-1"></i>
+                            <span>Elukwatini, 1192, South Africa</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-phone-alt text-gold"></i>
+                            <a href="tel:0714295538" class="hover:text-gold transition">071 429 5538</a>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-envelope text-gold"></i>
+                            <a href="mailto:patrickkhulekani92@gmail.com" class="hover:text-gold transition">patrickkhulekani92@gmail.com</a>
+                        </li>
+                        <li class="pt-2">
+                            <a href="https://wa.me/27714295538?text=Good%20day%20Patrick%20Building%20and%20Renovating.%20I%20visited%20your%20website%20and%20would%20like%20to%20enquire%20about%20your%20construction%20and%20renovation%20services." target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-lg text-xs transition shadow">
+                                <i class="fab fa-whatsapp text-base"></i> Chat on WhatsApp
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright Notice -->
+            <div class="border-t border-gold/10 pt-8 text-center text-xs text-gray-400">
+                <p>&copy; 2026 Patrick Building and Renovating. All Rights Reserved.</p>
+                <p class="mt-1 text-gold/80">Building Contractors in Elukwatini | House Renovations | Roofing & Tiling Services in Mpumalanga</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/27714295538?text=Good%20day%20Patrick%20Building%20and%20Renovating.%20I%20visited%20your%20website%20and%20would%20like%20to%20enquire%20about%20your%20construction%20and%20renovation%20services.%20Please%20assist%20me%20with%20a%20quotation." target="_blank" class="fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition duration-300 animate-bounce cursor-pointer" aria-label="WhatsApp Contact">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Hero Background Cinematic Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function nextSlide() {
+            slides[currentSlide].classList.remove('opacity-100');
+            slides[currentSlide].classList.add('opacity-0');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.remove('opacity-0');
+            slides[currentSlide].classList.add('opacity-100');
+        }
+        setInterval(nextSlide, 6500);
+
+        // Theme Toggle (Moon / Sun)
+        let isDarkMode = true;
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            const body = document.getElementById('body-root');
+            const iconDesktop = document.getElementById('theme-icon');
+            const iconMobile = document.getElementById('theme-icon-mobile');
+
+            if (isDarkMode) {
+                body.classList.remove('light-theme');
+                if(iconDesktop) { iconDesktop.className = "fas fa-moon text-lg"; }
+                if(iconMobile) { iconMobile.className = "fas fa-moon text-lg"; }
+            } else {
+                body.classList.add('light-theme');
+                if(iconDesktop) { iconDesktop.className = "fas fa-sun text-lg text-amber-500"; }
+                if(iconMobile) { iconMobile.className = "fas fa-sun text-lg text-amber-500"; }
+            }
+        }
+
+        // Lightbox Functions
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = img.src;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('flex');
+            lightbox.classList.add('hidden');
+        }
+
+        // Quote Form Submission -> WhatsApp
+        function handleQuoteSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('quote-name').value;
+            const phone = document.getElementById('quote-phone').value;
+            const email = document.getElementById('quote-email').value || 'Not provided';
+            const service = document.getElementById('quote-service').value;
+            const location = document.getElementById('quote-location').value;
+            const desc = document.getElementById('quote-desc').value;
+
+            const message = `*NEW QUOTATION REQUEST - PATRICK BUILDING & RENOVATING*%0A%0A*Full Name:* ${encodeURIComponent(name)}%0A*Contact Number:* ${encodeURIComponent(phone)}%0A*Email Address:* ${encodeURIComponent(email)}%0A*Service Required:* ${encodeURIComponent(service)}%0A*Project Location:* ${encodeURIComponent(location)}%0A*Project Description:* ${encodeURIComponent(desc)}`;
+
+            const whatsappUrl = `https://wa.me/27714295538?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Contact Form Submission -> WhatsApp
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            const phone = document.getElementById('contact-phone').value;
+            const email = document.getElementById('contact-email').value;
+            const msg = document.getElementById('contact-message').value;
+
+            const message = `*WEBSITE CONTACT MESSAGE - PATRICK BUILDING & RENOVATING*%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Phone:* ${encodeURIComponent(phone)}%0A*Email:* ${encodeURIComponent(email)}%0A*Message:* ${encodeURIComponent(msg)}`;
+
+            const whatsappUrl = `https://wa.me/27714295538?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
